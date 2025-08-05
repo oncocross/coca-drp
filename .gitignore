@@ -1,0 +1,10 @@
+run_docker.sh
+.ipynb_checkpoints
+.Trash-0
+.Trash-*
+
+checkpoints/
+data
+prediction_result
+procan
+weights

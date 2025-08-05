@@ -1,0 +1,39 @@
+# MCED/environment.yml
+
+name: cdpr_demo_env
+channels:
+  - pytorch      
+  - nvidia       
+  - conda-forge  
+  - defaults
+dependencies:
+  - python=3.10.12
+  - pip
+  - supervisor 
+  
+  - pytorch::pytorch-cuda=12.4 
+  - pytorch::pytorch 
+  - pytorch::torchvision
+  - pytorch::torchaudio
+
+  - ipykernel
+  - notebook
+  - jupyterlab
+
+  - pandas
+  - numpy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - colorcet
+  - openpyxl
+  
+  - umap-learn
+
+  - tqdm
+  - ipywidgets
+  - joblib
+
+  - pip:
+    - combat
+    - gradio
