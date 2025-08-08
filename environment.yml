@@ -1,39 +1,60 @@
-# MCED/environment.yml
+# Environment definition for ONCO-CDRP Project
 
-name: cdpr_demo_env
+name: cdrp_demo_env
 channels:
-  - pytorch      
-  - nvidia       
-  - conda-forge  
+  - pytorch
+  - dglteam/label/th24_cu118         # Channel for the DGL package
+  - nvidia
+  - conda-forge
   - defaults
+  - bioconda
+
 dependencies:
+  # --- Core & Environment ---
   - python=3.10.12
   - pip
-  - supervisor 
-  
-  - pytorch::pytorch-cuda=12.4 
-  - pytorch::pytorch 
-  - pytorch::torchvision
-  - pytorch::torchaudio
+  - supervisor
 
+  # --- PyTorch Framework (Version Pinned for Compatibility) ---
+  - pytorch::pytorch=2.4.1
+  - pytorch::torchvision=0.19.1
+  - pytorch::torchaudio=2.4.1
+  - pytorch::pytorch-cuda=11.8
+  - pytorch::torchdata
+
+  # --- DGL Installation ---
+  - dgl
+
+  # --- Jupyter & Interactive Computing ---
   - ipykernel
   - notebook
   - jupyterlab
+  - ipywidgets
 
-  - pandas
-  - numpy
+  # --- Data Science & ML Stack ---
+  - pandas==1.5.3
+  - numpy==1.23.5
   - scikit-learn
+  - umap-learn
+
+  # --- Data Visualization ---
   - matplotlib
   - seaborn
   - colorcet
-  - openpyxl
-  
-  - umap-learn
+  - tensorboard
+  - prettytable
 
+  # --- Cheminformatics & Molecular ML (Version Pinned for Compatibility) ---
+  - rdkit
+  - dgllife
+  
+  # --- Utilities ---
+  - openpyxl
   - tqdm
-  - ipywidgets
   - joblib
 
+  # --- Pip Packages ---
+  # Packages installed via pip if not available in conda channels
   - pip:
-    - combat
     - gradio
+    - molfeat

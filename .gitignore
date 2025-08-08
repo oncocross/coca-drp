@@ -2,9 +2,14 @@ run_docker.sh
 .ipynb_checkpoints
 .Trash-0
 .Trash-*
+core.*
+__pycache__
 
 checkpoints/
 data
 prediction_result
 procan
 weights
+
+*.pt
+*.csv
