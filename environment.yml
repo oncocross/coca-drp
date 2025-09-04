@@ -43,6 +43,9 @@ dependencies:
   - colorcet
   - tensorboard
   - prettytable
+  - wordcloud
+  - plotly
+  - networkx
 
   # --- Cheminformatics & Molecular ML (Version Pinned for Compatibility) ---
   - rdkit

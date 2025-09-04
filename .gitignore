@@ -4,6 +4,8 @@ run_docker.sh
 .Trash-*
 core.*
 __pycache__
+.gradio
+app.ipynb
 
 checkpoints/
 data
@@ -13,3 +15,6 @@ weights
 
 *.pt
 *.csv
+
+
+generate_umap.ipynb
