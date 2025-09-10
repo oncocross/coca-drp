@@ -20,6 +20,7 @@ group_column_map = {
     'Cancer type': 'cancer_type',
     'Target': 'targets',
     'Pathway': 'pathway_name',
+    'MOA': 'moa'
 }
 
 def create_placeholder_fig(message="Results will be displayed here after running a prediction."):

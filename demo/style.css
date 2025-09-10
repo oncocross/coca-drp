@@ -5,7 +5,7 @@
 /* ============================================= */
 /* These rules ensure that the main columns and their contents stretch 
    to fill the full height of the browser window, creating a more 
-   app-like feel and preventing empty space on taller screens. */
+   app-like feel. */
 
 #main_container {
     height: 100%; /* Allows child elements to use percentage-based heights. */
@@ -13,13 +13,13 @@
 
 .stretch-height {
     height: 100%;
-    display: flex; /* Enables flexbox layout for vertical stretching. */
+    display: flex; /* Enables flexbox for vertical stretching. */
     flex-direction: column; /* Stacks child elements vertically. */
 }
 
-/* Target the Gradio Tabs component directly within a stretched column. */
+/* Target the Gradio Tabs component within a stretched column. */
 .stretch-height > .gradio-tabs {
-    flex-grow: 1; /* Allows the tabs container to expand and fill available vertical space. */
+    flex-grow: 1; /* Allows the tabs container to expand and fill vertical space. */
     display: flex;
     flex-direction: column;
 }
@@ -30,7 +30,7 @@
     display: flex;
 }
 
-/* Ensure that any plot inside a stretched container expands to fill the space. */
+/* Ensure any plot inside a stretched container expands to fill the space. */
 .stretch-height .gradio-plot {
     flex-grow: 1;
 }
@@ -46,7 +46,7 @@
     display: none !important;
 }
 
-/* A utility class to create borderless components (rarely used). */
+/* A utility class to create borderless components. */
 .no-border {
     border: none !important;
     box-shadow: none !important;
@@ -64,8 +64,8 @@
     background-color: gray !important;
 }
 
-/* Apply the borderless, shadowless, and transparent background style to all 
-   specific plot containers used in the application for a uniform look. */
+/* Apply a borderless, shadowless, and transparent style to all 
+   specific plot containers for a uniform look. */
 #cell_line_treemap_container,
 #drug_composition_bar_container,
 #cell_line_umap_container,
@@ -74,15 +74,14 @@
 #cell_line_ic50_comp_analysis_container, 
 #cell_line_ic50_dist_analysis_container,
 #drug_sim_dist_analysis_container,
-#drug_ic50_scatter_analysis_container,
-#external_drug_ic50_scatter_analysis_container {
+#unified_ic50_scatter_analysis_container {
     border: none !important;
     box-shadow: none !important;
     background: none !important;
 }
 
-/* This is a highly specific selector to hide the root label ("Cell Lines") 
-   inside the treemap, as it's redundant. */
+/* A highly specific selector to hide the redundant root label ("Cell Lines") 
+   inside the treemap plot. */
 g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
     display: none !important;
 }
@@ -90,17 +89,16 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 /* =========================================== */
 /* --- "Train Data Overview" Info Panel --- */
 /* =========================================== */
-/* Styles for the row containing summary statistics and the "Load More" button. */
 
-/* Use CSS Grid for a flexible 4-column layout. */
+/* Use CSS Grid for a flexible 4-column layout for the info panel. */
 #info-panel-row {
     display: grid;
-    /* 3 equal columns, and a 4th that's between 64px and 128px wide. */
+    /* 3 equal columns, and a 4th for the button. */
     grid-template-columns: 1fr 1fr 1fr minmax(64px, 128px);
     gap: 15px;
 }
 
-/* Style the statistic buttons to look like static info boxes, not interactive buttons. */
+/* Style the statistic buttons to look like static info boxes. */
 .info-button {
     background: #FFFFFF !important;
     border: 1px solid #E0E0E0 !important;
@@ -110,7 +108,7 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
     width: 100% !important;
 }
 
-/* Style the "Load More" button with a prominent color. */
+/* Style the "Load More" button. */
 #load-more-button {
     background: #f97316 !important; /* Orange color */
     color: #FFFFFF !important;   
@@ -128,8 +126,8 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 /* --- Plotly Legend Adjustments --- */
 /* ======================================= */
 
-/* This highly specific selector targets the legend of the drug composition bar chart.
-   It moves the legend to the far right to prevent it from overlapping with chart content. */
+/* A highly specific selector to move the drug composition legend to the far right,
+   preventing it from overlapping with chart content. */
 #drug_composition_bar_container > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.legend {
     transform: translateX(93%) !important;
 }
@@ -142,8 +140,8 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 /* =========================================== */
 /* --- Molecular Description Panel Styling --- */
 /* =========================================== */
-/* This complex selector resets a specific Gradio label's style to make it
-   look like normal text instead of a bordered block title. */
+/* A complex selector to reset a specific Gradio label's style to look
+   like normal text instead of a bordered block title. */
 #basic-props .styler #inchikey-label.block.field-label {
     --block-title-background-fill: transparent !important;
     --block-border-width: 0px !important;
@@ -157,31 +155,51 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 }
 
 /* ======================================================== */
-/* --- IC50 Correlation Tab: Pagination Controls Styling --- */
+/* --- Analysis Tab Controls Styling (Radio Buttons & Pagination) --- */
 /* ======================================================== */
-/* Styles for the custom "Previous / Page X / Next" controls. */
 
-/* Use flexbox to arrange the pagination controls in a row. */
-#ic50_correlation_tab .pagination-row,
-#external_ic50_correlation_tab .pagination-row {
-    display: flex !important;
-    justify-content: space-between !important; /* Pushes prev/next buttons to the edges. */
-    align-items: center !important;
-    margin-top: 10px !important;
+/* Remove the default border from the div wrapping the radio buttons in both tabs. */
+#unified_ic50_correlation_tab div.form,
+#drug_sim_dist_analysis_tab div.form {
+    border: none !important;
+    box-shadow: none !important;
+    position: relative !important;
+    bottom: 5px !important;
 }
 
+/* Remove default padding from the fieldset of the radio button components. */
+#scatter_source_selector,
+#drug_sim_source_selector {
+    padding: 0 !important;
+}
+
+/* Set the gap between radio button items and remove any extra padding. */
+#scatter_source_selector > div.wrap,
+#drug_sim_source_selector > div.wrap {
+    gap: 15px !important;
+    padding: 0 !important;
+}
+
+/* Remove all default styling from the radio button labels for a minimal look. */
+#scatter_source_selector > div.wrap > label,
+#drug_sim_source_selector > div.wrap > label {
+    border: none !important;
+    background: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* --- Pagination Controls Styling --- */
+
 /* Prevent the prev/next buttons from growing or shrinking. */
-#ic50_correlation_tab #ic50_correlation_drug_prev_button,
-#ic50_correlation_tab #ic50_correlation_drug_next_button,
-#external_ic50_correlation_tab #external_ic50_correlation_drug_prev_button,
-#external_ic50_correlation_tab #external_ic50_correlation_drug_next_button {
+#unified_ic50_correlation_tab #ic50_correlation_drug_prev_button,
+#unified_ic50_correlation_tab #ic50_correlation_drug_next_button {
     flex-grow: 0; 
     flex-shrink: 0; 
 }
 
-/* Allow the page info text to expand and fill the middle space, centering it. */
-#ic50_correlation_tab #drug_page_info,
-#external_ic50_correlation_tab #external_drug_page_info {
+/* Allow the page info text to expand and fill the middle space for centering. */
+#unified_ic50_correlation_tab #drug_page_info {
     flex-grow: 1 !important;
     display: flex !important;
     justify-content: center !important;
@@ -189,8 +207,7 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 }
 
 /* A minor positional adjustment for the page info text. */
-#ic50_correlation_tab #drug_page_info p, 
-#external_ic50_correlation_tab #external_drug_page_info p {
+#unified_ic50_correlation_tab #drug_page_info p {
     position: relative !important;
     left: -16px !important;
     font-size: 16px !important;
@@ -198,8 +215,7 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 }
 
 /* Reset pagination button styles to look like plain text links. */
-#ic50_correlation_tab .pagination-row button,
-#external_ic50_correlation_tab .pagination-row button {
+#unified_ic50_correlation_tab .pagination-row button {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
@@ -211,27 +227,23 @@ g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
 }
 
 /* Add a hover effect for visual feedback. */
-#ic50_correlation_tab .pagination-row button:hover,
-#external_ic50_correlation_tab .pagination-row button:hover {
+#unified_ic50_correlation_tab .pagination-row button:hover {
     color: darkgray !important;
 }
 
 /* Align button text and set width to fit content. */
-#ic50_correlation_tab #ic50_correlation_drug_prev_button,
-#external_ic50_correlation_tab #external_ic50_correlation_drug_prev_button {
+#unified_ic50_correlation_tab #ic50_correlation_drug_prev_button {
     text-align: left !important;
     min-width: fit-content !important;
 }
 
-#ic50_correlation_tab #ic50_correlation_drug_next_button,
-#external_ic50_correlation_tab #external_ic50_correlation_drug_next_button {
+#unified_ic50_correlation_tab #ic50_correlation_drug_next_button {
     text-align: right !important;
     min-width: fit-content !important;
 }
 
-/* Style for disabled pagination buttons (e.g., "Previous" on page 1). */
-#ic50_correlation_tab .pagination-row button:disabled,
-#external_ic50_correlation_tab .pagination-row button:disabled {
+/* Style for disabled pagination buttons. */
+#unified_ic50_correlation_tab .pagination-row button:disabled{
     color: lightgray !important;
-    cursor: default; /* Remove the pointer on disabled state. */
+    cursor: default; /* Remove pointer on disabled state. */
 }

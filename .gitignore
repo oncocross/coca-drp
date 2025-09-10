@@ -8,6 +8,8 @@ __pycache__
 app.ipynb
 
 checkpoints/
+backup/
+
 data
 prediction_result
 procan
