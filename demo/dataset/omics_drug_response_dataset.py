@@ -1,4 +1,4 @@
-# dataset/dataset.py
+# dataset/omics_drug_response_dataset.py
 
 import torch
 import pandas as pd

@@ -1,0 +1,49 @@
+/* static/css/_reset.css */
+
+/* ======================================= */
+/* == General Component & Plot Resets == */
+/* ======================================= */
+
+/* Hide the default Plotly modebar (zoom, pan, etc.) for all charts. */
+.modebar-container {
+    display: none !important;
+}
+
+/* Remove the default border and shadow from Gradio's plot containers. */
+.gradio-container .plot-container {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Apply a borderless, shadowless, and transparent style to all specific
+   plot containers for a uniform look. */
+#cell_line_treemap_container,
+#drug_composition_bar_container,
+#cell_line_umap_container,
+#drug_umap_container,
+#mol_image_container,
+#cell_line_ic50_comp_analysis_container, 
+#cell_line_ic50_dist_analysis_container,
+#drug_sim_dist_analysis_container,
+#unified_ic50_scatter_analysis_container {
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+}
+
+/* A highly specific selector to hide the redundant root label ("Cell Lines")
+   inside the treemap plot. */
+g.trace > .slice > .slicetext > text[data-unformatted="Cell Lines"] {
+    display: none !important;
+}
+
+/* A highly specific selector to move the drug composition legend to the right,
+   preventing it from overlapping with the chart. */
+#drug_composition_bar_container > div.js-plotly-plot > div > div > svg:nth-child(3) > g.infolayer > g.legend {
+    transform: translateX(93%) !important;
+}
+
+/* Hides the scrollbar that can appear in long Plotly legends for ALL relevant plots. */
+.legend .scrollbar {
+    display: none;
+}

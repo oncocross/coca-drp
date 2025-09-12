@@ -1,0 +1,124 @@
+/* static/css/components.css */
+/*
+ * This file contains styles for specific, individual UI components
+ * like buttons, info panels, and custom controls.
+*/
+
+/* =========================================== */
+/* == "Train Data Overview" Panel Styling == */
+/* =========================================== */
+
+/* Defines a 4-column grid for the info panel in the 'Drug Composition' tab. */
+#info-panel-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr minmax(64px, 128px);
+    gap: 15px;
+}
+/* Styles the summary statistic buttons to look like static info boxes. */
+.info-button {
+    background: #FFFFFF !important;
+    border: 1px solid #E0E0E0 !important;
+    color: #4A4A4A !important;
+    box-shadow: none !important;
+    cursor: default !important;
+    width: 100% !important;
+}
+/* Styles the "Load More" button with a distinct appearance. */
+#load-more-button {
+    background: #f97316 !important;
+    color: #FFFFFF !important;   
+    border: none !important;
+    min-width: 0 !important;
+    width: 128px !important; 
+}
+/* Adds a subtle hover effect to the "Load More" button. */
+#load-more-button:hover {
+    opacity: 0.8 !important;
+}
+
+
+/* ======================================================== */
+/* == Analysis Tab Controls Styling (Radios & Pagination) == */
+/* ======================================================== */
+
+/* --- Custom Radio Buttons --- */
+
+/* Selects and removes the border ONLY from the div that contains the source radio buttons. */
+div.form:has(#scatter_source_selector),
+div.form:has(#drug_sim_source_selector) {
+    border: none !important;
+    box-shadow: none !important;
+    position: relative !important;
+    bottom: 5px !important; /* Minor positional tweak */
+}
+/* Removes default padding from the fieldset wrapper of the radio buttons. */
+#scatter_source_selector,
+#drug_sim_source_selector {
+    padding: 0 !important;
+}
+/* Sets the gap between radio button items and removes extra internal padding. */
+#scatter_source_selector > div.wrap,
+#drug_sim_source_selector > div.wrap {
+    gap: 15px !important;
+    padding: 0 !important;
+}
+/* Removes all default styling from the radio button labels for a minimal, clean look. */
+#scatter_source_selector > div.wrap > label,
+#drug_sim_source_selector > div.wrap > label {
+    border: none !important;
+    background: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* --- Pagination Controls (for IC50 Correlation Tab) --- */
+
+/* Resets pagination button styles to look like plain text links. */
+#unified_ic50_correlation_tab .pagination-row button {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 2px 0 !important;
+    cursor: pointer;
+    font-weight: bold;
+    color: black !important;
+    outline: none !important;
+}
+/* Adds a hover effect for visual feedback. */
+#unified_ic50_correlation_tab .pagination-row button:hover {
+    color: darkgray !important;
+}
+/* Styles for disabled pagination buttons. */
+#unified_ic50_correlation_tab .pagination-row button:disabled{
+    color: lightgray !important;
+    cursor: default;
+}
+/* Centers the page info text by allowing it to expand and fill the middle space. */
+#unified_ic50_correlation_tab #drug_page_info {
+    flex-grow: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+/* Applies a minor positional adjustment to the page info text. */
+#unified_ic50_correlation_tab #drug_page_info p {
+    position: relative !important;
+    left: -16px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+/* Prevents the prev/next buttons from growing or shrinking. */
+#unified_ic50_correlation_tab .pagination-button {
+    flex-grow: 0; 
+    flex-shrink: 0; 
+}
+/* Aligns button text and sets width to fit its content. */
+#unified_ic50_correlation_tab #ic50_correlation_drug_prev_button {
+    text-align: left !important;
+    min-width: fit-content !important;
+}
+#unified_ic50_correlation_tab #ic50_correlation_drug_next_button {
+    text-align: right !important;
+    min-width: fit-content !important;
+}

@@ -1,0 +1,41 @@
+/* static/css/layout.css */
+/*
+ * This file contains styles that define the main structure and layout
+ * of the application, particularly for vertical stretching.
+*/
+
+/* ============================================= */
+/* == Main App Layout & Vertical Stretching == */
+/* ============================================= */
+/* These rules make the main columns and their contents stretch to fill the
+   full height of the browser window, creating a more app-like feel. */
+
+/* Sets the main container's height to 100% to serve as a base for child elements. */
+#main_container {
+    height: 100%;
+}
+
+/* A helper class to make an element fill the available vertical space using flexbox. */
+.stretch-height {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Targets the Gradio Tabs component, allowing it to expand vertically. */
+.stretch-height > .gradio-tabs {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Targets the content area within the tabs, making it expand vertically. */
+.stretch-height > .gradio-tabs > .tab-content {
+    flex-grow: 1;
+    display: flex;
+}
+
+/* Ensures that plots within a stretched container also expand to fill the space. */
+.stretch-height .gradio-plot {
+    flex-grow: 1;
+}
