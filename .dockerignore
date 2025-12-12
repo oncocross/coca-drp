@@ -1,22 +1,22 @@
-# Git 관리 폴더 무시
+# Git configuration and version control
 .git
 .gitignore
 
-# 시스템 휴지통 및 임시 파일 무시 (이게 핵심!)
+# System trash and temporary files (Critical)
 .Trash-*
 .Trash-0
 **/.Trash
 
-# 파이썬 캐시 및 빌드 파일 무시
+# Python cache and build artifacts
 __pycache__
 *.pyc
 *.pyo
 *.pyd
 
-# 주피터 노트북 체크포인트 무시
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
-# 도커 관련 파일 무시 (이미지에 넣을 필요 없음)
+# Docker configuration files (Exclude from build context)
 Dockerfile
 docker-compose.yml
 .dockerignore

@@ -1,6 +1,6 @@
-# Environment definition for ONCO-CDRP Project
+# Environment definition for COCA-DRP Project
 
-name: cdrp_demo_env
+name: coca_drp_demo_env
 channels:
   - pytorch
   - dglteam/label/th24_cu118         # Channel for the DGL package

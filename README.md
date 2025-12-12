@@ -1,8 +1,8 @@
-# 🧬 ONCO-CDRP: AI-based Anticancer Drug Response Predictor
+# 🧬 COCA-DRP: AI-based Anticancer Drug Response Predictor
 
 An interactive web application that predicts cancer drug response (lnIC50) across various cell lines based on a drug's molecular structure (SMILES). It also identifies known anticancer drugs with similar response patterns from both internal (GDSC) and external (DRH) datasets.
 
-This application is built with Python, Gradio, PyTorch, and RDKit.
+You can access the web-based demo service at [LINK](https://05df9e417b2e786096.gradio.live).
 
 <br>
 
@@ -58,8 +58,8 @@ This application is designed to be run in a Docker container to ensure a consist
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/chaizek/ONCO-CDPR.git](https://github.com/chaizek/ONCO-CDPR.git)
-    cd ONCO-CDPR
+    git clone [https://github.com/oncocross/coca-drp.git](https://github.com/oncocross/coca-drp.git)
+    cd coca-drp
     ```
 
 2.  **Build the Docker Image:** From the root of the project directory, run the following command to build the Docker image. This may take some time.
