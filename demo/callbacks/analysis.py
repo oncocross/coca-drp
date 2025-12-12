@@ -22,16 +22,19 @@ from ._helpers import(
     _prepare_pagination_updates
 )
 
+GDSC_INFO = "*Note.* **The Genomics of Drug Sensitivity in Cancer** (GDSC) dataset was used as the reference for training."
+DRH_INFO = "*Note.* **The Drug Repurposing Hub (DRH)** dataset not seen during training."
 
 def handle_drug_ic50_correlation_source_switch(data_source: str, pred_df: pd.DataFrame, sim_df: pd.DataFrame, external_sim_df: pd.DataFrame) -> tuple:
     """Handles switching between Internal/External data for the IC50 correlation plot."""
-    is_internal = "Internal" in data_source
+    is_internal = "Genomics of Drug Sensitivity in Cancer" in data_source
     df_to_use = sim_df if is_internal else external_sim_df
+    data_info_text = GDSC_INFO if is_internal else DRH_INFO
 
     # Handle cases where the selected data source is empty.
     if df_to_use is None or df_to_use.empty:
         empty_pagination = _prepare_pagination_updates(pd.DataFrame(columns=['drug']), 1)
-        return (create_placeholder_fig("No data available."), "No data", *empty_pagination["buttons"], empty_pagination["page_info"], empty_pagination["prev_btn"], empty_pagination["next_btn"], 1, None)
+        return (data_info_text, create_placeholder_fig("No data available."), "No data", *empty_pagination["buttons"], empty_pagination["page_info"], empty_pagination["prev_btn"], empty_pagination["next_btn"], 1, None)
 
     # Reset plot to show the first drug of the newly selected dataset.
     selected_drug = df_to_use.iloc[0]['drug']
@@ -43,11 +46,11 @@ def handle_drug_ic50_correlation_source_switch(data_source: str, pred_df: pd.Dat
     pagination_updates = _prepare_pagination_updates(df_to_use, page=1, selected_drug=selected_drug)
     
     # Return a tuple of all UI updates.
-    return (fig, info_text, *pagination_updates["buttons"], pagination_updates["page_info"], pagination_updates["prev_btn"], pagination_updates["next_btn"], 1, selected_drug)
+    return (data_info_text, fig, info_text, *pagination_updates["buttons"], pagination_updates["page_info"], pagination_updates["prev_btn"], pagination_updates["next_btn"], 1, selected_drug)
 
 def handle_drug_ic50_correlation_control_selection(selected_drug: str, data_source: str, pred_df: pd.DataFrame, sim_df: pd.DataFrame, external_sim_df: pd.DataFrame, *all_buttons) -> tuple:
     """Updates the IC50 correlation plot when a specific drug button is clicked."""
-    is_internal = "Internal" in data_source
+    is_internal = "Genomics of Drug Sensitivity in Cancer" in data_source
     df_to_use = sim_df if is_internal else external_sim_df
     
     if not selected_drug or pred_df is None or df_to_use is None:
@@ -66,7 +69,7 @@ def handle_drug_ic50_correlation_control_selection(selected_drug: str, data_sour
 
 def handle_drug_ic50_correlation_page_change(action: str, data_source: str, current_page: int, sim_df: pd.DataFrame, external_sim_df: pd.DataFrame, selected_drug: str) -> tuple:
     """Handles the Previous/Next button clicks for the IC50 correlation drug list."""
-    is_internal = "Internal" in data_source
+    is_internal = "Genomics of Drug Sensitivity in Cancer" in data_source
     df_to_use = sim_df if is_internal else external_sim_df
 
     if df_to_use is None or df_to_use.empty:
@@ -85,15 +88,18 @@ def handle_drug_ic50_correlation_page_change(action: str, data_source: str, curr
 
 def handle_drug_dist_source_switch(data_source: str) -> gr.update:
     """Updates the 'Group By' choices when the data source for the distribution plot changes."""
+    is_internal = "Genomics of Drug Sensitivity in Cancer" in data_source
+    data_info_text = GDSC_INFO if is_internal else DRH_INFO
+    
     # Use 'Target'/'Pathway' for internal data, 'Target'/'MOA' for external.
-    if "Internal" in data_source:
-        return gr.update(choices=['Target', 'Pathway'], value='Target')
+    if is_internal:
+        return (gr.update(choices=['Target', 'Pathway'], value='Target'), data_info_text)
     else:
-        return gr.update(choices=['Target', 'MOA'], value='Target')
+        return (gr.update(choices=['Target', 'MOA'], value='Target'), data_info_text)
 
 def handle_drug_dist_plot_update(data_source: str, sim_df: pd.DataFrame, external_sim_df: pd.DataFrame, score_threshold: float, group_by: str) -> tuple:
     """Generates or updates the 'Similar Drug Distribution' plot based on UI controls."""
-    is_internal = "Internal" in data_source
+    is_internal = "Genomics of Drug Sensitivity in Cancer" in data_source
     df_to_use = sim_df if is_internal else external_sim_df
     
     # Correct the 'group_by' value if it's inconsistent with the new data source

@@ -15,15 +15,11 @@ ARG CONDA_ENV_NAME=cdrp_demo_env
 ENV CONDA_ENV_NAME=${CONDA_ENV_NAME}
 
 # 3. Update system and install packages
+# 3. Update system (supervisor 제거)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    wget \
-    ca-certificates \
-    git \
-    bzip2 \
-    openssl \
-    supervisor && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    wget ca-certificates git bzip2 openssl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 4. Install Miniconda
 ENV CONDA_DIR /opt/conda
@@ -88,4 +84,4 @@ EXPOSE 8888
 EXPOSE 7860
 
 # 11. Default command to run Supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

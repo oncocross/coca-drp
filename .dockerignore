@@ -1,10 +1,22 @@
-# .dockerignore
-
-.Trash-0
-.Trash-*
-core.*
-
+# Git 관리 폴더 무시
 .git
 .gitignore
 
-.ipynb_checkpoints/
+# 시스템 휴지통 및 임시 파일 무시 (이게 핵심!)
+.Trash-*
+.Trash-0
+**/.Trash
+
+# 파이썬 캐시 및 빌드 파일 무시
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# 주피터 노트북 체크포인트 무시
+.ipynb_checkpoints
+
+# 도커 관련 파일 무시 (이미지에 넣을 필요 없음)
+Dockerfile
+docker-compose.yml
+.dockerignore

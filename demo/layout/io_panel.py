@@ -41,12 +41,14 @@ def build_main_io_panel() -> dict:
             
             # Tab for similar drugs from the internal (GDSC) dataset.
             with gr.TabItem("📊 [GDSC] Similar Drug Pred."):
-                gr.Markdown("#### List of existing anticancer drugs with similar response patterns.")
+                gr.Markdown("#### List of anticancer drugs by response similarity in reference dataset. \n\
+                *Note.* **The Genomics of Drug Sensitivity in Cancer (GDSC)** dataset was used as the reference for training.")
                 similarity_output = gr.DataFrame(headers=["Drug", "Target", "Pathway", "Score"], wrap=True)
             
             # Tab for similar drugs from the external (DRH) dataset.
             with gr.TabItem("📊 [DRH] Similar Drug Pred."):
-                gr.Markdown("#### Similar drugs from an external dataset not seen during training.")
+                gr.Markdown("#### List of anticancer drugs by response similarity in independent dataset. \n\
+                *Note.* **The Drug Repurposing Hub (DRH)** dataset not seen during training.")
                 external_similarity_output = gr.DataFrame(headers=["Drug", "Target", "MOA", "Score"], wrap=True)
     
     # Return a dictionary of all created components for event registration.

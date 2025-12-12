@@ -60,8 +60,8 @@ def register_event_listeners(components: dict, states: dict):
         states["pred_data"], states["sim_data"], states["external_sim_data"],
         components["ic50_comp_plot"], components["ic50_comp_info_output"], components["ic50_comp_controls"],
         components["ic50_dist_plot"], components["ic50_dist_info_output"], components["ic50_dist_controls"],
-        components["dist_plot"], components["dist_info_output"], components["dist_controls"], components["dist_source_radio"],
-        components["corr_source_radio"], components["corr_plot"], *components["corr_top_drug_buttons"],
+        components["dist_plot"], components["dist_info_output"], components["dist_controls"], components["dist_source_radio"], components["dist_source_info_md"],
+        components["corr_source_radio"], components["corr_source_info_md"], components["corr_plot"], *components["corr_top_drug_buttons"],
         components["corr_controls"], components["corr_page_state"], components["corr_selected_drug_state"],
         components["corr_selected_drug_info_md"], components["corr_page_info_md"],
         components["corr_prev_button"], components["corr_next_button"]
@@ -89,7 +89,8 @@ def register_event_listeners(components: dict, states: dict):
     register_plot_update_listeners([components["ic50_dist_slider"], components["ic50_dist_group_by_radio"]], create_cell_line_ic50_dist_plot, [states["pred_data"], components["ic50_dist_slider"], components["ic50_dist_group_by_radio"]], [components["ic50_dist_plot"], components["ic50_dist_info_output"]])
     
     # Listeners for the Drug IC50 Correlation plot.
-    components["corr_source_radio"].change(fn=handle_drug_ic50_correlation_source_switch, inputs=[components["corr_source_radio"], states["pred_data"], states["sim_data"], states["external_sim_data"]], outputs=[components["corr_plot"], components["corr_selected_drug_info_md"], *components["corr_top_drug_buttons"], components["corr_page_info_md"], components["corr_prev_button"], components["corr_next_button"], components["corr_page_state"], components["corr_selected_drug_state"]])
+    components["corr_source_radio"].change(fn=handle_drug_ic50_correlation_source_switch, inputs=[components["corr_source_radio"], states["pred_data"], states["sim_data"], states["external_sim_data"]], outputs=[components["corr_source_info_md"], components["corr_plot"], components["corr_selected_drug_info_md"], *components["corr_top_drug_buttons"], components["corr_page_info_md"], components["corr_prev_button"], components["corr_next_button"], components["corr_page_state"], components["corr_selected_drug_state"]])
+    
     for btn in components["corr_top_drug_buttons"]:
         btn.click(fn=handle_drug_ic50_correlation_control_selection, inputs=[btn, components["corr_source_radio"], states["pred_data"], states["sim_data"], states["external_sim_data"]] + components["corr_top_drug_buttons"], outputs=[components["corr_plot"], components["corr_selected_drug_info_md"], *components["corr_top_drug_buttons"], components["corr_selected_drug_state"]])
     components["corr_prev_button"].click(fn=partial(handle_drug_ic50_correlation_page_change, "prev"), inputs=[components["corr_source_radio"], components["corr_page_state"], states["sim_data"], states["external_sim_data"], components["corr_selected_drug_state"]], outputs=[components["corr_page_state"], *components["corr_top_drug_buttons"], components["corr_page_info_md"], components["corr_prev_button"], components["corr_next_button"]])
@@ -98,5 +99,5 @@ def register_event_listeners(components: dict, states: dict):
     # Listeners for the Drug Similarity Distribution plot.
     dist_plot_update_inputs = [components["dist_source_radio"], states["sim_data"], states["external_sim_data"], components["dist_slider"], components["dist_group_by_radio"]]
     dist_plot_update_outputs = [components["dist_plot"], components["dist_info_output"]]
-    components["dist_source_radio"].change(fn=handle_drug_dist_source_switch, inputs=[components["dist_source_radio"]], outputs=[components["dist_group_by_radio"]]).then(fn=handle_drug_dist_plot_update, inputs=dist_plot_update_inputs, outputs=dist_plot_update_outputs)
+    components["dist_source_radio"].change(fn=handle_drug_dist_source_switch, inputs=[components["dist_source_radio"]], outputs=[components["dist_group_by_radio"], components["dist_source_info_md"]]).then(fn=handle_drug_dist_plot_update, inputs=dist_plot_update_inputs, outputs=dist_plot_update_outputs)
     register_plot_update_listeners([components["dist_slider"], components["dist_group_by_radio"]], handle_drug_dist_plot_update, dist_plot_update_inputs, dist_plot_update_outputs)

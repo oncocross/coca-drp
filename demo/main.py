@@ -62,14 +62,14 @@ def create_ui():
 
         # Initialize plots with placeholders when the app loads.
         demo.load(fn=lambda: create_placeholder_fig(), outputs=[all_components["ic50_comp_plot"]])\
-           .then(fn=lambda: create_placeholder_fig(), outputs=[all_components["ic50_dist_plot"]])\
-           .then(fn=lambda: create_placeholder_fig(), outputs=[all_components["dist_plot"]])\
-           .then(fn=lambda: create_placeholder_fig(), outputs=[all_components["corr_plot"]])
-            
+            .then(fn=lambda: create_placeholder_fig(), outputs=[all_components["ic50_dist_plot"]])\
+            .then(fn=lambda: create_placeholder_fig(), outputs=[all_components["dist_plot"]])\
+            .then(fn=lambda: create_placeholder_fig(), outputs=[all_components["corr_plot"]])
+        
     return demo
 
 
 if __name__ == "__main__":
     # Create and launch the Gradio app.
     app = create_ui()
-    app.launch(share=False, server_name="0.0.0.0")
+    app.launch(share=True, server_name="0.0.0.0")

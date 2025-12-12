@@ -127,15 +127,16 @@ def handle_prediction_and_plot_generation(smiles: str, ic50_thresh: float, ic50_
     fig_scatter = create_drug_ic50_correlation_plot(pred_df, DF_IC50, selected_drug)
     info_scatter = _create_drug_info_text(sim_df.iloc[0], is_internal=True)
     pagination_updates = _prepare_pagination_updates(sim_df, page=1, selected_drug=selected_drug)
-
+    dataset_info_text = "*Note.* **The Genomics of Drug Sensitivity in Cancer (GDSC)** dataset was used as the reference for training."
+    
     # 6. Assemble and return the complete tuple of updates in the correct order.
     return (
         pred_df_display.values.tolist(), sim_df_display.values.tolist(), external_sim_df_display.values.tolist(),
         pred_df, sim_df, external_sim_df,
         fig_ic50_comp, info_ic50_comp, gr.update(visible=True),
         fig_ic50_dist, info_ic50_dist, gr.update(visible=True),
-        fig_sim_dist, info_sim_dist, gr.update(visible=True), gr.update(visible=True),
-        gr.update(visible=True), fig_scatter, *pagination_updates["buttons"],
+        fig_sim_dist, info_sim_dist, gr.update(visible=True), gr.update(visible=True), gr.update(value=dataset_info_text, visible=True),
+        gr.update(visible=True), gr.update(value=dataset_info_text, visible=True), fig_scatter, *pagination_updates["buttons"],
         gr.update(visible=True), 1, selected_drug, gr.update(value=info_scatter, visible=True),
         pagination_updates["page_info"], pagination_updates["prev_btn"], pagination_updates["next_btn"]
     )

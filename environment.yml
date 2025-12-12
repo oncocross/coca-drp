@@ -6,8 +6,8 @@ channels:
   - dglteam/label/th24_cu118         # Channel for the DGL package
   - nvidia
   - conda-forge
-  - defaults
   - bioconda
+  - defaults
 
 dependencies:
   # --- Core & Environment ---
@@ -55,9 +55,10 @@ dependencies:
   - openpyxl
   - tqdm
   - joblib
+  - easydict
 
   # --- Pip Packages ---
   # Packages installed via pip if not available in conda channels
   - pip:
-    - gradio
+    - gradio==5.44.0
     - molfeat
