@@ -19,6 +19,16 @@ An interactive web application that predicts cancer drug response (lnIC50) acros
 
 <br>
 
+## 📂 Data Preparation (Required)
+Before building the container, please download the necessary datasets and model weights.
+
+- **Download Link:** [Google Drive Link Here](https://drive.google.com/drive/folders/1FOCi12zA83n_CRGv9reS5FX96U1nw9Er?usp=sharing)
+- **Instructions:**
+  1. Download the files from the link above.
+  2. Unzip/Place the files into the `demo/data/` directory within this repository. <br>
+     *(Note: Ensure the file structure matches the Project Structure diagram above.)*
+<br>
+
 ## 🛠️ Project Structure
 
 The project is organized into a modular architecture to ensure clarity, maintainability, and scalability.
@@ -40,7 +50,8 @@ The project is organized into a modular architecture to ensure clarity, maintain
 ├── visualizations/             # Plotting utility functions
 ├── static/                     # CSS stylesheets
 ├── dataset/                    # PyTorch dataset classes
-└── weights/                    # Pre-trained model weights
+├── weights/                    # Pre-trained model weights
+└── data/                       # Required datasets (Place downloaded files here)
 ```
 
 <br>
@@ -58,7 +69,7 @@ This application is designed to be run in a Docker container to ensure a consist
 
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/oncocross/coca-drp.git](https://github.com/oncocross/coca-drp.git)
+    git clone https://github.com/oncocross/coca-drp.git
     cd coca-drp
     ```
 
