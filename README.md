@@ -1,6 +1,6 @@
 # 🧬 COCA-DRP: AI-based Anticancer Drug Response Predictor
 
-> **⚡Try the Live Demo:** [Click Here to Access the Web Service](https://1dd164e183162c31cf.gradio.live)
+> **⚡Try the Live Demo:** [Click Here to Access the Web Service](https://ed9db735935b1fe8bb.gradio.live)
 
 An interactive web application that predicts cancer drug response (lnIC50) across various cell lines based on a drug's molecular structure (SMILES). It also identifies known anticancer drugs with similar response patterns from both internal (GDSC) and external (DRH) datasets.
 
